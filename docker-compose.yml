@@ -1,0 +1,30 @@
+version: '3'
+services:
+  ### MySQL database for orders
+  db-users:
+    container_name: db-users
+    image: mysql:8.0.33
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ms_users
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 3311:3306
+    expose:
+      - 3306
+
+  ### Postgres database for hotel
+  db-hotels:
+    container_name: db-hotels
+    image: postgres:15.2
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ms_hotels
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    ports:
+      - 5431:5431
+    expose:
+      - 5431
+    command: -p 5431
